@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    body{
+        background: white;
+    }
+    .btn-primary {
+    background-color: #8B0000;
+    border-color: #8B0000;
+  }
+    .btn-primary:hover {
+    background-color: #a60000;
+    border-color: #a60000;
+}
+  h5{
+    color: #a60000;
+  }
+  label{
+    color: black;
+  }
+  .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+  .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+        }
+        .profile-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .profile-info {
+            margin-top: 20px;
+        }
+        .profile-info h5 {
+            margin-bottom: 20px;
+        }
+        .profile-info .form-control {
+            margin-bottom: 15px;
+        }
+         #contact-info {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+  </style>
+<body>
+ <section id="header" class="cd-secondary-nav">
+  <nav class="navbar navbar-expand-lg  ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="project.html"><img src="{% static 'images/logo.jpg' %}" alt="Logo" style="width: 40px;">Matrimony.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profilematch' %}">Matches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'membership' %}">Membership</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="contact-toggle">Contact</a>
+                    <div id="contact-info" class="dropdown-menu">
+                      <h3 class="dropdown-header" style="color: #a60000;">Contact Information</h3>
+                      <p class="px-3"><strong style="color: #a60000;">Email:</strong> info@matrimony.com</p>
+                      <p class="px-3"><strong style="color: #a60000;">Phone:</strong> +91 9360356205</p>
+                      <p class="px-3"><strong style="color: #a60000;">Address:</strong> 66/a levingi
+                      puram 1st street tuticorin,tamilnadu,india</p>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'successstory' %}">Success Story</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome {{ request.session.a }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+</section>
+<div class="container-fluid profile-container">
+    <div class="row">
+        <!-- Left Side -->
+        {% csrf_token %}
+        <div class="col-md-4 profile-section text-center">
+             {% for member in member %}
+            <img src="{{member.image.url}}" class="d-block w-100">
+            <div class="about mt-3">
+                <label>Profile No</label>
+                <input type="text" value="{{ member.id }}" name="id" disabled class="form-control" placeholder="">
+            </div>            
+        </div>
+        <div class="col-md-8 profile-section">
+            <div class="profile-info">
+                <h5>Basic Details</h5>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Firstname</label>
+                        <input type="text" value="{{ member.firstname }}" name="firstname" disabled class="form-control" placeholder=""> 
+                    </div>
+                    <div class="col-md-6">
+                        <label>Lastname</label>
+                        <input type="text" value="{{ member.lastname }}" name="lastname" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Age</label>
+                        <input type="text" value="{{ member.age }}" name="age" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>DOB</label>
+                        <input type="text" value="{{ member.date }}" name="dob" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Gender</label>
+                        <input type="text" value="{{ member.gender }}" name="gender" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Mobile</label>
+                        <input type="text" value="{{ member.mobile }}" name="mobile" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Email</label>
+                        <input type="text" value="{{ member.email }}" name="email" disabled class="form-control" placeholder="">
+                    </div>
+                <h5>Horoscope Details</h5>
+                <div class="col-md-6">
+                        <label>Star</label>
+                        <input type="text" value="{{ member.star }}" name="star" disabled class="form-control" placeholder="">
+                </div>
+                <div class="col-md-6">
+                        <label>Rassi</label>
+                        <input type="text" value="{{ member.rassi }}" name="rassi" disabled class="form-control" placeholder="">
+                </div>    
+                <h5>Personal Details</h5>
+                <div class="col-md-6">
+                        <label>Fathername</label>
+                        <input type="text" value="{{ member.fathername }}" name="fathername" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Mothername</label>
+                        <input type="text" value="{{ member.mothername }}" name="mothername" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Father Contact</label>
+                        <input type="text" value="{{ member.fathercontact }}" name="fathercontact" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Religion</label>
+                        <input type="text" value="{{ member.religion }}" name="religion" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Caste</label>
+                        <input type="text" value="{{ member.caste }}" name="caste" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Mother Tongue</label>
+                        <input type="text" value="{{ member.lang }}" name="mothertongue" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Education</label>
+                        <input type="text" value="{{ member.education }}" name="education" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Profession</label>
+                        <input type="text" value="{{ member.profession }}" name="profession" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Country</label>
+                        <input type="text" value="{{ member.country }}" name="country" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>State/City</label>
+                        <input type="text" value="{{ member.state }}" name="state/city" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Pincode</label>
+                        <input type="text" value="{{ member.pincode }}" name="pincode" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Address1</label>
+                        <input type="text" value="{{ member.address1 }}" name="address1" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Address2</label>
+                        <input type="text" value="{{ member.address2 }}" name="address2" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Height</label>
+                        <input type="text" value="{{ member.height }}" name="height" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Weight</label>
+                        <input type="text" value="{{ member.weight }}" name="weight" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Hobby</label>
+                        <input type="text" value="{{ member.hobby }}" name="hobby" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Salary</label>
+                        <input type="text" value="{{ member.salary }}" name="salary" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Family Status</label>
+                        <input type="text" value="{{ member.family }}" name="familystatus" disabled class="form-control" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label>WorkAddress</label>
+                        <input type="text" value="{{ member.work }}" name="work" disabled class="form-control" placeholder="">
+                    </div>
+                    
+            </div>
+            </div>
+            <div><br><br>
+    <center><button class="btn btn-primary" style="margin-left: 30px;"><a href="{% url 'edit' member.id %}"> Edit Profile</a></button></center>
+    </div>
+    {% endfor %}
+        </div>
+    </div>
+</div><br><br>
+ <footer class="footer text-center text-lg-start">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Have You Questions Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Have you questions?</h5>
+          <p>
+            Contact us at:201/a WGC Road Tuticorin City, Thoothukudi, Tamil Nadu, India <br>
+            Email: fycmatrimony@gmail.com <br>
+            Phone: +912 456 7890
+          </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'login' %}">User Login</a></li>
+            <li><a href="#!">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Privacy</h5>
+          <ul class="list-unstyled">
+            <li><a href="#!">Privacy Policy</a></li>
+            <li><a href="#!">Terms of Use</a></li>
+          </ul>
+        </div>
+
+        <!-- Follow Us Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Follow us</h5>
+          <a href="https://www.facebook.com/" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-twitter"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-instagram"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script>
+    document.getElementById("contact-toggle").addEventListener("click", function(e) {
+      e.preventDefault();
+      var contactInfo = document.getElementById("contact-info");
+      
+      // Toggle visibility
+      if (contactInfo.style.display === "none" || contactInfo.style.display === "") {
+        contactInfo.style.display = "block";
+      } else {
+        contactInfo.style.display = "none";
+      }
+    });
+
+    // Close the dropdown when clicked outside
+    document.addEventListener("click", function(event) {
+      var contactInfo = document.getElementById("contact-info");
+      var contactToggle = document.getElementById("contact-toggle");
+
+      if (!contactInfo.contains(event.target) && event.target !== contactToggle) {
+        contactInfo.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

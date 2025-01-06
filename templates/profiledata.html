@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+  h3{
+    text-align: center;
+    color: #a60000;
+  }
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    height: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 60px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+footer {
+      background-color: #f8f9fa;
+      padding: 40px 0;
+    }
+    .footer a {
+      color: #6c757d;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .btn-secondary{
+        background-color: blue;
+    }
+    a{
+        margin-top: -0px;
+    }
+     #contact-info {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+</style>
+<body>
+<section id="header" class="cd-secondary-nav">
+  <nav class="navbar navbar-expand-lg  ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="project.html"><img src="{% static 'images/logo.jpg' %}" alt="Logo" style="width: 40px;">Matrimony.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profilematch' %}">Matches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'membership' %}">Membership</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'read' %}">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="contact-toggle">Contact</a>
+                    <div id="contact-info" class="dropdown-menu">
+                      <h3 class="dropdown-header" style="color: #a60000;">Contact Information</h3>
+                      <p class="px-3"><strong style="color: #a60000;">Email:</strong> info@matrimony.com</p>
+                      <p class="px-3"><strong style="color: #a60000;">Phone:</strong> +91 9360356205</p>
+                      <p class="px-3"><strong style="color: #a60000;">Address:</strong> 66/a levingi
+                      puram 1st street tuticorin,tamilnadu,india</p>
+                    </div>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'successstory' %}">Success Story</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome {{ request.session.a }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+</section><br>
+<h3 class="text-center">Today Profile Matches</h3>&nbsp;
+<div class="container-fluid">
+    <h4>Matches Based on Your Profile
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'profiledata1' %}" class="btn btn-secondary">View All Matches</a>
+    </h4><br>
+    <div class="row">
+        <!-- Match Card 1 -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #a60000;">S.Divya</h5>
+                    <p class="card-text">Age - 23 ,Profession - BE studying</p>
+                    <a href="{% url 'read' %}" class="btn btn-secondary">View Profile</a>
+                </div>
+            </div>
+        </div>
+        <!-- Match Card 2 -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #a60000;">M.Swathi</h5>
+                    <p class="card-text">Age - 24 ,Profession - BE Working</p>
+                    <a href="{% url 'read' %}" class="btn btn-secondary">View Profile</a>
+                </div>
+            </div>
+        </div>
+        <!-- Match Card 3 -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #a60000;">S.Priya</h5>
+                    <p class="card-text">Age - 20 ,Profession - BSC studying</p>
+                    <a href="{% url 'read' %}" class="btn btn-secondary">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br><br>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Filter Section -->
+        <div class="col-md-3">
+            <div class="filter-section">
+                <div class="container-fluid">
+                <h5>Filter Profiles</h5>
+                <button class="btn btn-primary btn-sm mb-2"><a href="{% url 'membership' %}" style="color: white;"> Upgrade to access premium filters</a></button>
+                <form>
+                    <!-- Basic Details -->
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="text" class="form-control" id="age" min="18" max="40">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Profession</label>
+                        <input type="text" class="form-control" id="profession" name="profession">
+                    </div>
+                    <!-- Religious Details -->
+                    <div class="mb-3">
+                        <label for="" class="form-label">Religion</label>
+                        <input type="text" class="form-control" id="religion" name="religion">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">caste</label>
+                        <input type="text" class="form-control" id="caste" name="caste">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="btn">Apply</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>S.no</th>
+                        <th>Image</th>
+                        <th>Firstname</th>
+                        <th>Age</th>
+                        <th>Mobile</th>
+                        <th>Education</th>
+                        <th>Profession</th>
+                        <th>Religion</th>
+                        <th>Caste</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in member %}
+                    <tr>
+                        <td>{{ member.id }}</td>
+                        <td><img src="{{member.image.url}}" class="d-block w-100"></td>
+                        <td>{{ member.firstname }}</td>
+                        <td>{{ member.age }}</td>
+                        <td>{{ member.mobile }}</td>
+                        <td>{{ member.education }}</td>
+                        <td>{{ member.profession }}</td>
+                        <td>{{ member.religion }}</td>
+                        <td>{{ member.caste }}</td>
+                        <td>
+                            <center>
+                              <a href="{% url 'profile2' %}" class="btn btn-primary edit">View</a>
+                            </center>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div><br><br><br>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#age').keyup(function(){ 
+    var search = $(this).val();
+    $('table tbody tr').hide();
+    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
+    if(len > 0){
+       $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+      $(this).closest('tr').show();
+    });
+ }else{
+    $('.notfound').show();
+   } 
+  });
+});
+$(document).ready(function(){
+  $('#profession').keyup(function(){ 
+    var search = $(this).val();
+    $('table tbody tr').hide();
+    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
+    if(len > 0){
+       $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+      $(this).closest('tr').show();
+    });
+ }else{
+    $('.notfound').show();
+   } 
+  });
+});
+$(document).ready(function(){
+  $('#religion').keyup(function(){ 
+    var search = $(this).val();
+    $('table tbody tr').hide();
+    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
+    if(len > 0){
+       $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+      $(this).closest('tr').show();
+    });
+ }else{
+    $('.notfound').show();
+   } 
+  });
+});
+$(document).ready(function(){
+  $('#caste').keyup(function(){ 
+    var search = $(this).val();
+    $('table tbody tr').hide();
+    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
+    if(len > 0){
+       $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+      $(this).closest('tr').show();
+    });
+ }else{
+    $('.notfound').show();
+   } 
+  });
+});
+</script>
+  <!-- Footer -->
+  <br>
+  <footer class="footer text-center text-lg-start">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Have You Questions Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Have you questions?</h5>
+          <p>
+            Contact us at:201/a WGC Road Tuticorin City, Thoothukudi, Tamil Nadu, India <br>
+            Email: fycmatrimony@gmail.com <br>
+            Phone: +912 456 7890
+          </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'login' %}">User Login</a></li>
+            <li><a href="#!">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Privacy</h5>
+          <ul class="list-unstyled">
+            <li><a href="#!">Privacy Policy</a></li>
+            <li><a href="#!">Terms of Use</a></li>
+          </ul>
+        </div>
+
+        <!-- Follow Us Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Follow us</h5>
+          <a href="https://www.facebook.com/" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-twitter"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-instagram"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("contact-toggle").addEventListener("click", function(e) {
+      e.preventDefault();
+      var contactInfo = document.getElementById("contact-info");
+      
+      // Toggle visibility
+      if (contactInfo.style.display === "none" || contactInfo.style.display === "") {
+        contactInfo.style.display = "block";
+      } else {
+        contactInfo.style.display = "none";
+      }
+    });
+
+    // Close the dropdown when clicked outside
+    document.addEventListener("click", function(event) {
+      var contactInfo = document.getElementById("contact-info");
+      var contactToggle = document.getElementById("contact-toggle");
+
+      if (!contactInfo.contains(event.target) && event.target !== contactToggle) {
+        contactInfo.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

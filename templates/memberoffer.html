@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrimony Membership Plans</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .membership-card {
+      background-color: lightgray;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      margin: 20px auto;
+    }
+    .membership-card:hover {
+            transform: scale(1.05);
+        }
+    .card-header {
+      padding: 10px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      text-align: center;
+      color: #fff;
+    }
+    .card-header.silver {
+      background-color: #c0c0c0;
+    }
+    .card-header.gold {
+      background-color: #ffd700;
+    }
+    .card-header.premium {
+      background-color: #8a2be2;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .card-footer {
+      background-color: lightgray;
+      padding: 10px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      text-align: center;
+    }
+    .img-fluid{
+      margin-left: 320px;
+    }
+     #contact-info {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    </style>
+</head>
+<body>
+<section id="header" class="cd-secondary-nav">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="project.html"><img src="{% static 'images/logo.jpg' %}" alt="Logo" style="width: 40px;">Matrimony.com</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profilematch' %}">Matches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'membership' %}">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile2' %}">My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="contact-toggle">Contact</a>
+                    <div id="contact-info" class="dropdown-menu">
+                      <h3 class="dropdown-header" style="color: #a60000;">Contact Information</h3>
+                      <p class="px-3"><strong style="color: #a60000;">Email:</strong> info@matrimony.com</p>
+                      <p class="px-3"><strong style="color: #a60000;">Phone:</strong> +91 9360356205</p>
+                      <p class="px-3"><strong style="color: #a60000;">Address:</strong> 66/a levingi
+                      puram 1st street tuticorin,tamilnadu,india</p>
+                    </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Welcome {{ request.session.a }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+</section>
+<div class="container-fluid">
+    <div class="alert alert-warning text-center" role="alert" style="background-image: radial-gradient(circle, #c4959f, #c88d99, #cc8493, #cf7b8d, #d27287, #d56a81, #d7627b, #d95975, #db506e, #dd4666, #df3a5d, #e02d55);">
+        <h4 class="alert-heading" style="color: black;">Special Offer!</h4>
+        <p style="color: black;">Upgrade to Premium Membership now at Gold Membership prices. Limited time offer!</p>
+        <p style="color: black;">Offers time ends at 20 days to go!</p>
+    </div>
+</div>
+<h5 style="text-align:center;font-size: 25px;">Pay now to contact matches</h5>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="membership-card">
+                <div class="card-header silver">
+                    <h4>Silver Membership</h4>
+                </div>
+                <div class="card-body">
+                    <p>₹500<strong>/Periodic</strong></p>
+                    <ul>
+                        <li>Subscription Period: 6 Months</li>
+                        <li><strong>Profile Views:</strong> 100</li>
+                        <li>- Connect Directly with Matches</li>
+                        <li>- Profile Registration and Management</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">
+                        <a href="{% url 'payment' %}" style="color: white;">Order Now</a>
+                    </button>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="col-md-4">
+            <div class="membership-card">
+                <div class="card-header gold">
+                    <h4>Gold Membership</h4>
+                </div>
+                <div class="card-body">
+                    <p>₹1000<strong>/Periodic</strong></p>
+                    <ul>
+                        <li>Subscription Period: 9 Months</li>
+                        <li><strong>Profile Views:</strong> 200</li>
+                        <li>- Connect Directly with Matches</li>
+                        <li>- View Detailed Profile Information</li>
+                        <li>- Make Chats with Profile</li>
+                        <li>- Make Voice and Video Calls</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">
+                        <a href="{% url 'payment' %}" style="color: white;">Order Now</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="membership-card">
+                <div class="card-header premium">
+                    <h4 style="font-weight: bold;text-decoration: line-through;">Premium</h4><h4>Gold Membership</h4>
+                </div>
+                <div class="card-body">
+                    <p>₹1000<strong>/Periodic</strong></p>
+                    <ul>
+                        <li>Subscription Period: 15 Months</li>
+                        <li><strong>Profile Views:</strong> Unlimited</li>
+                        <li>- Connect Directly with Matches</li>
+                        <li>- View Detailed Profile Information</li>
+                        <li>- Unlock Access to Advanced Search</li>
+                        <li>- Make Unlimited Chats with Profile</li>
+                        <li>- Make Unlimited Voice and Video Calls</li>
+                        <li>- Upload Your Photography</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">
+                        <a href="{% url 'payment' %}" style="color: white;">Order Now</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br>
+<div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <img src="{% static 'images/crown(1)(1).jpg' %}"  alt="Crown" class="img-fluid" style="align-content: center;">
+                <h2 class="text-center">Why Paid Membership?</h2><br>
+                <div class="row mt-4">
+                    <div class="col-md-3 feature">
+                        <i class="icon fas fa-phone-alt"></i>
+                        <h5>Talk to matches directly</h5>
+                    </div>
+                    <div class="col-md-3 feature">
+                        <i class="icon fas fa-file-alt"></i>
+                        <h5>Get complete profile details</h5>
+                    </div>
+                    <div class="col-md-3 feature">
+                        <i class="icon fas fa-user-check"></i>
+                        <h5>Enhanced profile visibility</h5>
+                    </div>
+                    <div class="col-md-3 feature">
+                        <i class="icon fas fa-envelope"></i>
+                        <h5>Get more responses</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+<footer class="footer text-center text-lg-start">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Have You Questions Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Have you questions?</h5>
+          <p>
+            Contact us at:201/a WGC Road Tuticorin City, Thoothukudi, Tamil Nadu, India <br>
+            Email: fycmatrimony@gmail.com <br>
+            Phone: +912 456 7890
+          </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'login' %}">User Login</a></li>
+            <li><a href="#!">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Privacy</h5>
+          <ul class="list-unstyled">
+            <li><a href="#!">Privacy Policy</a></li>
+            <li><a href="#!">Terms of Use</a></li>
+          </ul>
+        </div>
+
+        <!-- Follow Us Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Follow us</h5>
+          <a href="https://www.facebook.com/" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-twitter"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-instagram"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById("contact-toggle").addEventListener("click", function(e) {
+      e.preventDefault();
+      var contactInfo = document.getElementById("contact-info");
+      
+      // Toggle visibility
+      if (contactInfo.style.display === "none" || contactInfo.style.display === "") {
+        contactInfo.style.display = "block";
+      } else {
+        contactInfo.style.display = "none";
+      }
+    });
+
+    // Close the dropdown when clicked outside
+    document.addEventListener("click", function(event) {
+      var contactInfo = document.getElementById("contact-info");
+      var contactToggle = document.getElementById("contact-toggle");
+
+      if (!contactInfo.contains(event.target) && event.target !== contactToggle) {
+        contactInfo.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

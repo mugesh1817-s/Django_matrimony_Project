@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+  nav{
+   background-image: linear-gradient(to right bottom, #d81717, #d81c18, #d82018, #d82419, #d8271a, #d7311b, #d5391d, #d4401f, #d14c23, #ce5628, #cc602d, #c96834);
+  }
+  #btn{
+    background-color:royalblue;
+  }
+  h1{
+    text-align: center;
+    color: black;
+  }
+    table {
+    
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+ .highlighted {
+            background-color: red;
+        }
+        thead {
+            background-color: black; 
+            color: black;
+        }
+        .sidebar {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        background-color: blue;
+        color: #fff;
+        padding-top: 20px;
+    }
+    .sidebar a {
+        color: #fff;
+        padding: 15px;
+        display: block;
+        text-decoration: none;
+    }
+    .sidebar a:hover {
+        background-color: #495057;
+    }
+    .content {
+        margin-left: 200px; /* Same width as the sidebar */
+        padding: 20px;
+    }
+</style>
+<body>
+<div class="sidebar">
+    <h2 class="text-center">MY Admin</h2>
+    <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="{% url 'admindash' %}"><i class="fas fa-chart-bar"></i> Home</a>
+    <a href="#"><i class="fas fa-table"></i> About</a>
+    <a href="#"><i class="fas fa-folder"></i> Contact</a>
+    <a href="{% url 'adminuser' %}"><i class="fa-solid fa-circle-user"></i> Users</a>
+    <a href="{% url 'admindata' %}"><i class="fa-solid fa-user"></i> Profiles</a>
+    <a href="{% url 'readoff' %}"><i class="fa-solid fa-user"></i> Offers</a>
+    <a href="{% url 'adminstory' %}"><i class="fa-solid fa-user"></i> Stories</a>
+    <a href="{% url 'adminprofit' %}"><i class="fa-solid fa-user"></i> Profit</a>
+    <a href="{% url 'displayexp' %}"><i class="fa-solid fa-user"></i> Expense</a>
+    <a href="{% url 'admind' %}"><i class="fas fa-cogs"></i> Log Out</a>
+</div><br>
+<h1 style="margin-left:70px">Matrimony Profiles</h1>
+<div class="content">
+<table  border='1' style='border-collapse:collapse;' >
+<thead class="thead-dark">
+ <tr>
+   <th>S.no</th>
+   <th>Firstname</th>
+   <th>Email</th>
+   <th>Mobile number</th>
+   <th colspan="7" style="text-align:center;">Action</th>
+  </tr>
+ </thead>
+ <tbody>
+  {% for member in member %}
+   <tr>
+    <td>{{ member.id }}</td>
+    <td>{{ member.firstname }}</td>
+    <td>{{ member.email }}</td>
+    <td>{{ member.mobile }}</td>
+      <td>
+      <a href="{% url 'displaydata' member.id  %}" class="btn btn-primary view"><i class="fa-solid fa-eye"></i>View</a></td>
+      <td><a href="{% url 'admindmail' member.id %}" class="btn btn-warning "><i class="fa-solid fa-envelope"></i>Mail</a></td>
+      <td><a href="{% url 'adminuserdays' member.id %}" class="btn btn-secondary "><i class="fa-solid fa-calendar-days"></i>Days</a></td>
+      <td><a href="{% url 'adminuserdays' member.id %}" class="btn btn-info "><i class="fa-solid fa-indian-rupee-sign"></i>Moneyback</a></td>
+      <td>
+        <a href="{% url 'toggle_status' member.id %}" class="btn btn-success">
+        {% if member.status == 1 or member.status == 4 %}
+            <span class="badge bg-success">Active</span>
+        {% else %}
+            <span class="badge bg-danger">Blocked</span>
+        {% endif %}
+        </td>
+   </tr>
+   {% endfor %}
+ </tbody>
+ </table>
+ </div>
+  <script>
+        $(document).ready(function() {
+            $('.edit').on('click',function(event) {
+                event.preventDefault(); 
+                $(this).closest('tr').toggleClass('highlighted');
+            });
+        });
+    </script>
+</body>
+</html>

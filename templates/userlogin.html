@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    .container-login{
+        margin-bottom:450px;
+        margin-left: 400px;
+        width: 700px;
+    }
+    .navbar-nav-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .navbar-nav-right {
+      display: flex;
+    }
+    .find-special-someone {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        .find-special-someone h2 {
+            color: #f57c8a;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+        .icon-box {
+            text-align: center;
+            max-width: 200px;
+        }
+        .icon-box img {
+            width: 100px;
+            height: 100px;
+            background-color: #00c5cd;
+            border-radius: 50%;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .icon-box h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .icon-box p {
+            color: #555;
+        }
+            .success-story {
+            margin-bottom: 30px;
+        }
+        .story-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff3366;
+        }
+        .story-content {
+            font-size: 14px;
+        }
+        .story-img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .carousel-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+         #contact-info {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+</style>
+<body>
+  <nav class="navbar navbar-expand-lg  ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="project.html"><img src="{% static 'images/logo.jpg' %}" alt="Logo" style="width: 40px;">Matrimony.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">User Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="contact-toggle">Contact</a>
+                    <div id="contact-info" class="dropdown-menu">
+                      <h3 class="dropdown-header" style="color: #a60000;">Contact Information</h3>
+                      <p class="px-3"><strong style="color: #a60000;">Email:</strong> info@matrimony.com</p>
+                      <p class="px-3"><strong style="color: #a60000;">Phone:</strong> +91 9360356205</p>
+                      <p class="px-3"><strong style="color: #a60000;">Address:</strong> 66/a levingi
+                      puram 1st street tuticorin,tamilnadu,india</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'images/webback1.jpg' %}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+            <div class="container-login">
+            <div class="row justify-content-end">
+            <div class="col-md-6">
+            <div class="register_right">
+                <div class="register_right_inner clearfix p-4 border rounded">
+                    <div class="center_3">
+                        <h2 class="text-center ms-4">LOGIN</h2>
+                    </div>
+                    <form method="POST" action="{% url 'home' %}">
+                        {% csrf_token %}
+                        <div class="ms-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email" required maxlength="40">
+                        </div>
+                        <div class="ms-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter Your Pasword"required maxlength="20">
+                        </div><br>
+                          <button type="submit" class="btn btn-primary w-100">Login</button>
+                        {% if msg %}
+                            <p style="color:red;">{{ msg }}</p>
+                        {% endif %}
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+    </div>
+</div>
+</div><br>
+<div class="container-fluid find-special-someone">
+    <h2>Find your Special Someone</h2>
+    <div class="icon-container">
+        <div class="icon-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828934.png" alt="Sign Up">
+            <h4>Sign Up</h4>
+            <p>Register for free & put up your Matrimony Profile</p>
+        </div>
+        <div class="icon-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/456/456212.png" alt="Connect">
+            <h4>Connect</h4>
+            <p>Select & Connect with Matches you like</p>
+        </div>
+        <div class="icon-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png" alt="Interact">
+            <h4>Interact</h4>
+            <p>Become a Member & Start a Conversation</p>
+        </div>
+    </div>
+</div><br>
+<h5 style="text-align: center;">Ours Bride Success story</h5><br><br>
+<div class="container-fluid">
+    <div id="successStoriesCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- First slide with 3 cards -->
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-4 success-story">
+                        <div class="card">
+                            <img src="{% static 'images/story3.jpg' %}" alt="Story 3" class="card-img-top story-img">
+                            <div class="card-body">
+                                <p class="story-title">Mr.Velmurugan ~ Mrs.Velmurugan</p>
+                                <p class="story-content">Thanks matrimony.com which helped us in finding the right match. We started talking over calls and WhatsApp frequently after the first meet. <a href="#">Read More</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 success-story">
+                        <div class="card">
+                            <img src="{% static 'images/story1.jpg' %}" alt="Story 1" class="card-img-top story-img">
+                            <div class="card-body">
+                                <p class="story-title">Manoj ~ Srivani</p>
+                                <p class="story-content">Our first meeting happened on 26th May and we started talking over calls and WhatsApp frequently after the first meet. We made it clear to each other that let's go. <a href="#">Read More</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 success-story">
+                        <div class="card">
+                            <img src="{% static 'images/success.jpg' %}" alt="Story 2" class="card-img-top story-img">
+                            <div class="card-body">
+                                <p class="story-title">Vivek Kumar ~ Gowri</p>
+                                <p class="story-content">We have met through matrimony.com Not knowing that we will connect so fast but we actually did. The end results were amazing. We have got the perfect match and it <a href="#">Read More</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-4 success-story">
+                        <div class="card">
+                            <img src="{% static 'images/story3.jpg' %}" alt="Story 3" class="card-img-top story-img">
+                            <div class="card-body">
+                                <p class="story-title">Mr.Velmurugan ~ Mrs.Velmurugan</p>
+                                <p class="story-content">Thanks matrimony.com which helped us in finding the right match. We started talking over calls and WhatsApp frequently after the first meet. <a href="#">Read More</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 success-story">
+                        <div class="card">
+                            <img src="{% static 'images/story1.jpg' %}" alt="Story 1" class="card-img-top story-img">
+                            <div class="card-body">
+                                <p class="story-title">Manoj ~ Srivani</p>
+                                <p class="story-content">Our first meeting happened on 26th May and we started talking over calls and WhatsApp frequently after the first meet. We made it clear to each other that let's go. <a href="#">Read More</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 success-story">
+                        <div class="card">
+                            <img src="{% static 'images/success.jpg' %}" alt="Story 2" class="card-img-top story-img">
+                            <div class="card-body">
+                                <p class="story-title">Vivek Kumar ~ Gowri</p>
+                                <p class="story-content">We have met through matrimony.com Not knowing that we will connect so fast but we actually did. The end results were amazing. We have got the perfect match and it <a href="#">Read More</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more slides as needed -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#successStoriesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#successStoriesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<br><br>
+ <footer class="footer text-center text-lg-start">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Have You Questions Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Have you questions?</h5>
+          <p>
+            Contact us at:201/a WGC Road Tuticorin City, Thoothukudi, Tamil Nadu, India <br>
+            Email: fycmatrimony@gmail.com <br>
+            Phone: +912 456 7890
+          </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'login' %}">User Login</a></li>
+            <li><a href="#!">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Privacy</h5>
+          <ul class="list-unstyled">
+            <li><a href="#!">Privacy Policy</a></li>
+            <li><a href="#!">Terms of Use</a></li>
+          </ul>
+        </div>
+
+        <!-- Follow Us Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Follow us</h5>
+          <a href="https://www.facebook.com/" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-twitter"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-instagram"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="">
+</script>
+<script>
+    document.getElementById("contact-toggle").addEventListener("click", function(e) {
+      e.preventDefault();
+      var contactInfo = document.getElementById("contact-info");
+      
+      // Toggle visibility
+      if (contactInfo.style.display === "none" || contactInfo.style.display === "") {
+        contactInfo.style.display = "block";
+      } else {
+        contactInfo.style.display = "none";
+      }
+    });
+
+    // Close the dropdown when clicked outside
+    document.addEventListener("click", function(event) {
+      var contactInfo = document.getElementById("contact-info");
+      var contactToggle = document.getElementById("contact-toggle");
+
+      if (!contactInfo.contains(event.target) && event.target !== contactToggle) {
+        contactInfo.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

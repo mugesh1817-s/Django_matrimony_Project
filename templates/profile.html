@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    body{
+        background: #f9e9de;
+    }
+    .container-d {
+            max-width: 2000px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+    .btn-primary {
+    background-color: #8B0000;
+    border-color: #8B0000;
+  }
+    .btn-primary:hover {
+    background-color: #a60000;
+    border-color: #a60000;
+}
+ h5{
+    color:#a60000 ;
+  }
+  h3{
+    color:#a60000;
+    text-align: center;
+  }
+    label{
+      color: black;
+    }
+     #contact-info {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+  </style>
+<body>
+ <section id="header" class="cd-secondary-nav">
+  <nav class="navbar navbar-expand-lg  ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="project.html"><img src="{% static 'images/logo.jpg' %}" alt="Logo" style="width: 40px;">Matrimony.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'read' %}">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="contact-toggle">Contact</a>
+                    <div id="contact-info" class="dropdown-menu">
+                      <h3 class="dropdown-header" style="color: #a60000;">Contact Information</h3>
+                      <p class="px-3"><strong style="color: #a60000;">Email:</strong> info@matrimony.com</p>
+                      <p class="px-3"><strong style="color: #a60000;">Phone:</strong> +91 9360356205</p>
+                      <p class="px-3"><strong style="color: #a60000;">Address:</strong> 66/a levingi
+                      puram 1st street tuticorin,tamilnadu,india</p>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome {{ request.session.a }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+</section><br>
+
+<div class="container-fluid" id="cont">
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <form method="POST" action="{% url 'create' %}"  enctype="multipart/form-data">
+        <h5>Profile Picture</h5>
+        <input type="file" class="form-control" name="image" id="image"><br>
+        <p>{{ request.session.a }}</p>
+        <button id="btn" class="btn btn-primary">Save</button>
+      </div>
+      <div class="col-md-9">
+        <center><h5>Profile Registration</h5></center>
+          {% csrf_token %}
+          <h5>Basic Details</h5><br>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="firstname" class="form-label">First Name</label>
+              <input type="text" class="form-control" name="firstname" id="firstname" placeholder="firstname" required maxlength="20">
+            </div>
+            <div class="col">
+              <label for="surname" class="form-label">Last Name</label>
+              <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname" required maxlength="20">
+            </div>
+            <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="text" name="age" class="form-control" name="age" id="age" placeholder="enter the age"required maxlength="2" required>
+            </div>
+            <div class="mb-3">
+            <label for="DOB" class="form-label">DOB</label>
+            <input type="text" class="form-control" id="date" name="date" placeholder="enter the dob"required maxlength="20">
+            </div>
+            <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <input type="text" class="form-control" id="gender" name="gender" placeholder="enter the gender "required maxlength="50">
+          </div>
+          <div class="mb-3">
+            <label for="mobile" class="form-label">Mobile</label>
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="enter the mobile number" required maxlength="10"required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="enter email id"required maxlength="50">
+          </div><br>
+          <h5>HoroScope Details</h5><br><br>
+          <div class="mb-3">
+            <label for="star" class="form-label">Star</label>
+            <input type="text" class="form-control" name="star" name="star" id="star" placeholder="enter the Star" required maxlength="40">
+          </div>
+          <div class="mb-3">
+            <label for="rassi" class="form-label">Rassi</label>
+            <input type="text" class="form-control" name="rassi" name="rassi" id="rassi" placeholder="enter the Rassi" required maxlength="40">
+          </div><br><br>
+          <h5>Personal Details</h5><br><br>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="fathername" class="form-label">Father Name</label>
+              <input type="text" class="form-control" name="fathername" id="fathername" placeholder="father name"required maxlength="40">
+            </div>
+            <div class="col">
+              <label for="mothername" class="form-label">Mother Name</label>
+              <input type="text" class="form-control" name="mothername" id="mothername" placeholder="mother name" required maxlength="40">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="fathercontact" class="form-label">Father Contact</label>
+            <input type="text" class="form-control" name="fathercontact" id="fathercontact" placeholder="father contact"required maxlength="10">
+          </div>
+          <div class="mb-3">
+              <label for="religion" class="form-label">Religion</label>
+                <select class="form-select" id="religion" name="religion">
+                  <option>Select</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Muslim">Muslim</option>
+                  <option value="Christian">Christian</option>
+                  <option value="Inter-Religion">Inter-Religion</option>
+                </select> 
+          </div>
+          <div class="mb-3">
+            <label for="caste" class="form-label">Caste</label>
+            <input type="text" class="form-control" name="caste" id="caste" placeholder="Caste"required maxlength="30">
+          </div>
+          <div class="mb-3">
+              <label for="motherTongue" class="form-label">Mother Tongue</label>
+                <select class="form-select" id="lang" name="lang">
+                    <option>Select</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Malayalam">Malayalam</option>
+                    <option value="Marthi">Marthi</option>
+                    <option value="Urdu">Urdu</option>
+                    <option value="Punjabi">Punjabi</option>
+                    <option value="Sanskrit">Sanskrit</option>
+                    <option value="Nepali">Nepali</option>
+                    <option value="Kannada">Kannada</option>
+                    <option value="Bengali">Bengali</option>
+                    <option value="Gujarati">Gujarati</option>
+                </select>
+                
+          </div>
+          <div class="mb-3">
+            <label for="education" class="form-label">Education</label>
+                 <select class="form-select" name="education" id="education">
+                    <option>Select</option>
+                    <option value="10th">10th</option>
+                    <option value="12th">12th</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="BA">BA</option>
+                    <option value="B.Sc">B.Sc</option>
+                    <option value="B.Com">B.Com</option>
+                    <option value="BBA">BBA</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BBS">BBS</option>
+                    <option value="BDS">BDS</option>
+                    <option value="BPharm">BPharm</option>
+                    <option value="LLB">LLB</option>
+                    <option value="BE">BE</option>
+                    <option value="B.Arch">B.Arch</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="M.Tech">M.Tech</option>
+                    <option value="ME">ME</option>
+                    <option value="MA">MA</option>
+                    <option value="M.Sc">M.Sc</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                    <option value="LL.M">LL.M</option>
+                    <option value="MBBS">MBBS</option>
+                    <option value="Ph.D">Ph.D</option>
+                    <option value="others">others</option>
+                 </select>
+          </div>
+           <div class="mb-3">
+            <label for="profession" class="form-label">Profession</label>
+            <input type="text" class="form-control" name="profession" id="profession" placeholder="enter the Profession" required maxlength="40">
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="country" class="form-label">Country</label>
+              <input type="text" class="form-control" name="country" id="country" placeholder="country" required maxlength="30">
+            </div>
+            <div class="col">
+              <label for="state" class="form-label">State/city</label>
+              <input type="text" class="form-control" name="state" id="state" placeholder="state/city" required maxlength="30">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="pincode" class="form-label">Pincode</label>
+            <input type="text" name="pincode" class="form-control" id="pincode" placeholder="pincode" required maxlength="6">
+          </div>
+          <div class="mb-3">
+            <label for="address1" class="form-label">Address 1</label>
+            <input type="text" class="form-control" name="address1" id="address1" placeholder="enter address line 1"required maxlength="60">
+          </div>
+          <div class="mb-3">
+            <label for="address2" class="form-label">Address 2</label>
+            <input type="text" class="form-control" name="address2" id="address2" placeholder="enter address line 2"required maxlength="60">
+          </div>
+          <div class="mb-3">
+            <label for="Height" class="form-label">Height</label>
+            <input type="text" class="form-control" name="height" id="height" placeholder="enter the Height" required maxlength="40">
+          </div>
+          <div class="mb-3">
+            <label for="weight" class="form-label">Weight</label>
+            <input type="text" class="form-control" name="weight" id="weight" placeholder="enter the Weight" required maxlength="40">
+          </div>
+          <div class="mb-3">
+            <label for="hobby" class="form-label">Hobby</label>
+            <input type="text" class="form-control" name="hobby" id="hobby" placeholder="hobby" required maxlength="50">
+          </div>
+          <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="text" class="form-control" name="salary" id="salary" placeholder="salary" required maxlength="10">
+          </div>
+          <div class="mb-3">
+            <label for="family" class="form-label">Family Type</label>
+            <input type="text" class="form-control" name="family" id="family" placeholder="family type" required maxlength="20">
+          </div>
+          <div class="mb-3">
+            <label for="work" class="form-label">Work Address</label>
+            <input type="text" class="form-control" name="work" id="work" placeholder="work address" required maxlength="60">
+          </div>
+          <center>
+          <button type="submit" id="create" class=" btn btn-primary">Save Profile</button>
+          </center>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div><br><br>
+ <footer class="footer text-center text-lg-start">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Have You Questions Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Have you questions?</h5>
+          <p>
+            Contact us at:201/a WGC Road Tuticorin City, Thoothukudi, Tamil Nadu, India <br>
+            Email: fycmatrimony@gmail.com <br>
+            Phone: +912 456 7890
+          </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'login' %}">User Login</a></li>
+            <li><a href="#!">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Privacy</h5>
+          <ul class="list-unstyled">
+            <li><a href="#!">Privacy Policy</a></li>
+            <li><a href="#!">Terms of Use</a></li>
+          </ul>
+        </div>
+        <!-- Follow Us Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Follow us</h5>
+          <a href="https://www.facebook.com/" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-twitter"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-instagram"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script>
+    document.getElementById("contact-toggle").addEventListener("click", function(e) {
+      e.preventDefault();
+      var contactInfo = document.getElementById("contact-info");
+      
+      // Toggle visibility
+      if (contactInfo.style.display === "none" || contactInfo.style.display === "") {
+        contactInfo.style.display = "block";
+      } else {
+        contactInfo.style.display = "none";
+      }
+    });
+
+    // Close the dropdown when clicked outside
+    document.addEventListener("click", function(event) {
+      var contactInfo = document.getElementById("contact-info");
+      var contactToggle = document.getElementById("contact-toggle");
+
+      if (!contactInfo.contains(event.target) && event.target !== contactToggle) {
+        contactInfo.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

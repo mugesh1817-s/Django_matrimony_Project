@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<title></title>
+</head>
+<style>
+	.container-offer{
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      margin: 20px auto;
+      margin-left: 250px;
+    }
+  .sidebar {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        background-color: blue;
+        color: #fff;
+        padding-top: 20px;
+    }
+    .sidebar a {
+        color: #fff;
+        padding: 15px;
+        display: block;
+        text-decoration: none;
+    }
+    .sidebar a:hover {
+        background-color: #495057;
+    }
+    .table{
+        margin-left: 230px;
+    }
+    th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+</style>
+<body>
+<div class="sidebar">
+    <h2 class="text-center">MY Admin</h2>
+    <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="{% url 'admindash' %}"><i class="fas fa-chart-bar"></i> Home</a>
+    <a href="#"><i class="fas fa-table"></i> About</a>
+    <a href="#"><i class="fas fa-folder"></i> Contact</a>
+    <a href="{% url 'adminuser' %}"><i class="fa-solid fa-circle-user"></i> Users</a>
+    <a href="{% url 'admindata' %}"><i class="fa-solid fa-user"></i> Profiles</a>
+    <a href="{% url 'readoff' %}"><i class="fa-solid fa-user"></i> Offers</a>
+    <a href="{% url 'adminstory' %}"><i class="fa-solid fa-user"></i> Stories</a>
+    <a href="{% url 'adminprofit' %}"><i class="fa-solid fa-user"></i> Profit</a>
+    <a href="{% url 'displayexp' %}"><i class="fa-solid fa-user"></i> Expense</a>
+    <a href="{% url 'admind' %}"><i class="fas fa-cogs"></i> Log Out</a>
+</div><br>
+<div class="container-offer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center" style="color: #a60000;">Fill in the Details Below</h2>
+            <form method="POST" action="{% url 'createoff' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name"  id="name" placeholder="Premium Membership pack at now Gold Membership ">
+                </div>
+                <div class="mb-3">
+                    <label for="validation" class="form-label">Validation </label>
+                    <input type="text" class="form-control" name="validation"  id="validation" placeholder="15 month">
+                </div>
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Savings Amount</label>
+                    <input type="text" class="form-control" name="amount"  id="amount" placeholder="500 rupess">
+                </div>
+                <div class="mb-3">
+                    <label for="request" class="form-label">Request Matches</label>
+                    <input type="text" class="form-control" id="request"  name="requests" placeholder="Enter any specific requests">
+                </div>
+                <button type="submit" id="create2" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div><br>
+<div class="table">
+<div class="col-md-9">
+<table width='100%' border='2' style='border-collapse:collapse;' >
+<a href="/edit/{{ offer.id }}"></a> 
+<thead>
+ <tr>
+   <th>S.no</th>
+   <th>Name</th>
+   <th>Validation</th>
+   <th>Amount</th>
+   <th>Request</th>
+   <th>Action</th>
+   </tr>
+ </thead>
+ <tbody id="cont">
+   {% for offer in offer %}
+   <tr>
+    <td>{{ offer.id }}</td>
+    <td>{{ offer.name}}</td>
+    <td>{{ offer.validation }}</td>
+    <td>{{ offer.amount}}</td>
+    <td>{{ offer.requests }}</td>
+    <td><center>
+      <a href="{% url 'read' %}" class="btn btn-primary view"><i class="fa-solid fa-eye"></i> View</a>
+      <a href="" class="btn btn-danger edit"><i class="fa-solid fa-trash"></i> Delete</a></td></center>
+</tr>
+{% endfor %}
+</tbody>
+</table></div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="{% static 'js/script1.js' %}"></script>
+</body>
+</html>

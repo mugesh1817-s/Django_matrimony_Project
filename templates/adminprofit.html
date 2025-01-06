@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    h2{
+        margin-left: -100px;
+    }
+    .content {
+        margin-left: 270px; /* Add a margin-left to accommodate the sidebar */
+        padding: 20px;
+    }
+    .box {
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: 20px;
+    }
+    .box h3 {
+        color: #fff;
+        padding: 10px;
+    }
+    .silver-box { background-image: linear-gradient(to left, #b3b1e9, #b5b2e7, #b7b3e5, #b8b4e4, #bab5e2, #b9b5de, #b9b4db, #b8b4d7, #b5b2d0, #b3b0c9, #b0adc3, #adabbc); }
+    .gold-box { background-color: #FFD700; }
+    .premium-box { background-image: linear-gradient(to bottom, #09057e, #0d0691, #1207a4, #1708b8, #1c09cc, #1d09cb, #1f09cb, #2009ca, #1d09b4, #19089f, #16078a, #130676); }
+
+    .sidebar {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        background-color: blue;
+        color: #fff;
+        padding-top: 20px;
+    }
+    .sidebar a {
+        color: #fff;
+        padding: 15px;
+        display: block;
+        text-decoration: none;
+    }
+    .sidebar a:hover {
+        background-color: #495057;
+    }
+    .container-fluid {
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+        width: 100%;
+    }
+    .container-fluid label {
+        font-weight: bold;
+    }
+    .content-row {
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+<div class="sidebar">
+    <h2 class="text-center" style="margin-left: 10px;">MY Admin</h2>
+    <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="{% url 'admindash' %}"><i class="fas fa-chart-bar"></i> Home</a>
+    <a href="#"><i class="fas fa-table"></i> About</a>
+    <a href="#"><i class="fas fa-folder"></i> Contact</a>
+    <a href="{% url 'adminuser' %}"><i class="fa-solid fa-circle-user"></i> Users</a>
+    <a href="{% url 'admindata' %}"><i class="fa-solid fa-user"></i> Profiles</a>
+    <a href="{% url 'readoff' %}"><i class="fa-solid fa-user"></i> Offers</a>
+    <a href="{% url 'adminstory' %}"><i class="fa-solid fa-user"></i> Stories</a>
+    <a href="{% url 'adminprofit' %}"><i class="fa-solid fa-user"></i> Profit</a>
+    <a href="{% url 'displayexp' %}"><i class="fa-solid fa-user"></i> Expense</a>
+    <a href="{% url 'admind' %}"><i class="fas fa-cogs"></i> Log Out</a>
+</div><br>
+
+<div class="content">
+        <center><h2>Profit Calculation</h2></center>
+        <div class="container" style="margin-right: 200px;margin-left: -80px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box silver-box">
+                        <h3>Silver Members</h3>
+                        <p>Details about Silver Membership.</p>
+                        <p>Price: ₹500</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box gold-box">
+                        <h3>Gold Members</h3>
+                        <p>Details about Gold Membership.</p>
+                        <p>Price: ₹1000</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box premium-box">
+                        <h3>Premium Members</h3>
+                        <p>Details about Premium Membership.</p>
+                        <p>Price: ₹1500</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row content-row">
+                <div class="col-md-4">
+                    <div class="container-fluid">
+                        <h5 style="color:#a60000" class="text-center">Silver Profit</h5>
+                        <label>Profiles</label>
+                        <input type="text" class="form-control" name="profile" disabled placeholder="77"><br>
+                        <label>Plan</label>
+                        <input type="text" class="form-control" name="plan" disabled placeholder="Silver"><br>
+                        <label>Payment</label>
+                        <input type="empty" class="form-control" name="payment" disabled placeholder="500"><br>
+                        <label>Profit Amount</label>
+                        <input type="text" class="form-control" name="profitamount" disabled placeholder="7000">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="container-fluid">
+                        <h5 style="color:#a60000" class="text-center">Gold Profit</h5>
+                        <label>Profiles</label>
+                        <input type="text" class="form-control" name="profile" disabled placeholder="53"><br>
+                        <label>Plan</label>
+                        <input type="text" class="form-control" name="plan" disabled placeholder="Gold"><br>
+                        <label>Payment</label>
+                        <input type="empty" class="form-control" name="payment" disabled placeholder="1000"><br>
+                        <label>Profit Amount</label>
+                        <input type="text" class="form-control" name="profitamount" disabled placeholder="9500">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="container-fluid">
+                        <h5 style="color:#a60000" class="text-center">Premium Profit</h5>
+                        <label>Profiles</label>
+                        <input type="text" class="form-control" name="profile" disabled placeholder="32"><br>
+                        <label>Plan</label>
+                        <input type="text" class="form-control" name="plan" disabled placeholder="Premium"><br>
+                        <label>Payment</label>
+                        <input type="empty" class="form-control" name="payment" disabled placeholder="1500"><br>
+                        <label>Profit Amount</label>
+                        <input type="text" class="form-control" name="profitamount" disabled placeholder="10000">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript"></script>
+</body>
+</html>

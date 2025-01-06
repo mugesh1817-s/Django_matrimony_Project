@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    nav{
+            background-color: #eaa0a2;
+        }
+    .navbar-nav-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar-nav-right {
+            display: flex;
+        }
+        footer {
+      background-color: #f8f9fa;
+      padding: 40px 0;
+    }
+    .footer a {
+      color: #6c757d;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+</style>
+<body>
+     <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="project.html">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo" style="width: 40px;">
+                Matrimony.com
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav navbar-nav-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">User Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-nav-right">
+                    <a href="{% url 'login' %}"><button class="btn btn-primary">Login</button></a>
+                </ul>
+            </div>
+        </div>
+    </nav><br>
+    <div class="container-fluid">
+        <div class="row content-section">
+            <div class="col-md-12">
+                <h5>About Matrimony</h5><br>
+                <div class="content-text">
+                    Matrimony, India's leading provider of online matchmaking services delivers matchmaking services to users in India and the Indian diaspora through its website complemented by an on-the-ground network of retail centres in India. It has been  as India's  online matrimony brand by The Brand Trust Matrimony.com comprises a network of 18 regional portals including TamilMatrimony, KeralaMatrimony, TeluguMatrimony, BengaliMatrimony and HindiMatrimony.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row content-section">
+            <div class="col-md-12">
+                <h5>About Matrimony.com</h5><br>
+                <div class="content-text">
+                    Matrimony.com Ltd is pure play Consumer Internet Company to get listed.Once you have registered yourself on the matrimonial website, you will be able to access the profiles of numerous brides and grooms. Through these matrimonial websites, it's pretty sure that you will find the right partner for you hassle free.. Over 3000+ associates serve  of active members.
+                    <br><br>
+                    The company provides both matchmaking and marriage related services through website.It helps the user by specifying profile for a prospective Bride or Groom and all the other information online. Any user can get every information about their life partner at his/her home at their own convenience. 
+                    <br><br>
+                    With a strong leadership in online matrimony, the company has been expanding into the highly unorganised marriage services Industry. The goal is to build a company and a long lasting institution with a legacy for generations to come.
+                </div>
+            </div>
+        </div><br>
+        <div class="row content-section">
+            <div class="col-md-12">
+                <h5>About Us</h5><br>
+                <div class="content-text">
+                    Matrimony.com is one of the pioneers of online matrimony service. Today, we are the most trusted Matrimony website . Millions of happy marriages happened and continue to happen through Matrimony. We have been featured in the Limca Book of Records for the highest number of documented marriages online. Matrimony is the 1st group to offer 100% mobile verified profiles, reinforcing the trust that members have on us. We have also pioneered the highly personalized matchmaking services - Assisted Service and EliteMatrimony. Our purpose is to build a better  through happy marriages.
+                </div><br>
+                
+            </div>
+        </div>
+    </div>
+<footer class="footer text-center text-lg-start">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Have You Questions Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Have you questions?</h5>
+          <p>
+            Contact us at:201/a WGC Road Tuticorin City, Thoothukudi, Tamil Nadu, India <br>
+            Email: fycmatrimony@gmail.com <br>
+            Phone: +912 456 7890
+          </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'login' %}">User Login</a></li>
+            <li><a href="{% url 'admind' %}">Admin Login</a></li>
+            <li><a href="#!">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Privacy</h5>
+          <ul class="list-unstyled">
+            <li><a href="#!">Privacy Policy</a></li>
+            <li><a href="#!">Terms of Use</a></li>
+          </ul>
+        </div>
+
+        <!-- Follow Us Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Follow us</h5>
+          <a href="https://www.facebook.com/" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-twitter"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-instagram"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

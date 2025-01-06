@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .container{
+            width: 2000px;
+            margin-left: 15px;
+            margin-bottom: 400px;
+            font-family: 'Philosopher', sans-serif;
+        }
+        nav{
+            background-color: #eaa0a2;
+        }
+        h2{
+            text-align: center;
+            font-size: 25px;
+            color: #a60000;
+        }
+        .navbar-nav-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar-nav-right {
+            display: flex;
+        }
+        .container-dropdown{
+            width: 300px;
+            padding: 20px;
+        }
+        label{
+            color: black;
+        }
+        h5{
+            color: #a60000;
+        }
+        #img{
+            width: 500px;
+            
+        }
+         #contact-info {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="project.html">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo" style="width: 40px;">
+                Matrimony.com
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav navbar-nav-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">User Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="contact-toggle">Contact</a>
+                    <div id="contact-info" class="dropdown-menu">
+                      <h3 class="dropdown-header" style="color: #a60000;">Contact Information</h3>
+                      <p class="px-3"><strong style="color: #a60000;">Email:</strong> info@matrimony.com</p>
+                      <p class="px-3"><strong style="color: #a60000;">Phone:</strong> +91 9360356205</p>
+                      <p class="px-3"><strong style="color: #a60000;">Address:</strong> 66/a levingi
+                      puram 1st street tuticorin,tamilnadu,india</p>
+                    </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-nav-right">
+                    <a href="{% url 'login' %}"><button class="btn btn-primary" onclick="alert('are you register profile registration ')">Login</button></a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/igphotos2.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="container">
+                        <div class="row justify-content-end">
+                            <div class="col-md-6">
+                                <div class="register_right">
+                                    <div class="register_right_inner clearfix p-4 border rounded">
+                                        <h2>Profile Registration</h2>
+                                        <form method="POST" action="{% url 'register' %}">
+                                            {% csrf_token %}
+                                            <div class="mb-3">
+                                                <label for="profileFor" class="form-label">Profile Created For</label>
+                                                <select class="form-select" name="profile" id="profile" required maxlength="20">
+                                                    <option>Select</option>
+                                                    <option>Self</option>
+                                                    <option>Son/Daughter</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email address</label>
+                                                <input type="email" name="email" class="form-control" id="email">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Password</label>
+                                                <input type="password" name="password" class="form-control" id="password">
+                                            </div>
+                                            <button type="submit" id="create" class="btn btn-primary">Register</button>
+                                            <a href="{% url 'moneyback' %}" onclick="alert('are you confrom')" class="btn btn-primary">Money Back</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div><br>
+<center><h3>How is Matrimony.com different?</h3></center><br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{% static 'images/igphoto.jpg' %}" style="margin-left: 50px;" id="img" alt="Matrimony Image">
+                </div>
+                <div class="col-md-6" id="paras">
+                    <h2 class="highlight">Most Trusted Matrimony Site</h2>
+                    <p style="font-size: 19px; margin-right: 30px;">Welcome to matrimony.com, the first matrimonial site to offer a scientific approach to finding a compatible Life Partner. Exclusive to matrimony.com, our personality matching system will help ensure that your marriage is lasting and fulfilling. Established in 2006 and with thousands of registered members, we are the most advanced marriage bureau operating today. Include us in your journey.</p>
+                </div>
+            </div><br><br>
+            <div class="row section-content">
+                <div class="col-md-6">
+                    <h2>Free Profile Creation</h2>
+                    <p style="font-size: 19px; margin-left: 50px;">That's right; there are no fees or payments required to create your profile on matrimony.com. Other matrimonial companies charge you an entire month's salary before they allow you to contact their members; matrimony.com allows you to create your shaadi profile and receive messages from other members for free. Now that India has a premium, low-cost matchmaking service that is available to everyone, you no longer have an excuse to be single!</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{% static 'images/image1.jpg' %}" style="height: 250px; margin-left: 50px;" id="img"  alt="Profile Creation Image">
+                </div>
+            </div><br><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{% static 'images/image2.jpg' %}" style="margin-left: 50px;" id="img"  alt="Matrimony Image">
+                </div>
+                <div class="col-md-6" id="paras">
+                    <h2 class="highlight">Maximum Privacy</h2>
+                    <p style="font-size: 19px; margin-right: 30px;">We were the first marriage bureau in the world to implement full site-wide encryption. Although this came at a considerable cost to us, we are dedicated to ensuring your information is as safe as possible. Without encryption, criminals may eavesdrop on your conversations and potentially steal your identity. For more information on how encryption protects your privacy, refer to our article on online safety.</p>
+                </div>
+            </div><br><br>
+            <div class="row section-content">
+                <div class="col-md-6">
+                    <h2>Exclusive Matchmaking</h2>
+                    <p style="font-size: 19px;margin-left: 50px;">Research has established that couples who are also matched on personality have more fulfilling relationships and are more successful. An individual's personality cannot be judged by their age, religion, or appearance. Even after a brief conversation, it is difficult to determine your compatibility with another person. The state of being married requires compatible personalities, and our exclusive personality test, developed by registered doctors, will ensure the perfect match.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{% static 'images/image3.jpg' %}" style="height: 250px; margin-left: 50px;" id="img" alt="Profile Creation Image" id="img">
+                </div>
+            </div><br><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{% static 'images/image4.jpg' %}" style="height: 250px; margin-left: 50px;" id="img" alt="Matrimony Image">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="highlight">Success Story</h2>
+                    <p style="font-size: 19px; margin-right: 30px;">My name is Padma and my husband's name is Tavish Swaminathan. I am now Padma Swaminathan thanks to the team at Matrimony.com. I found Tavish on your matrimony.com website a month after I had created my profile. We began talking and organised a meeting with our families. We married here in Chennai three months later. God bless you and thank you very much Matrimony.com</p>
+                </div>
+            </div>
+        </div>
+        </div><br><br>
+ <footer class="footer text-center text-lg-start">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Have You Questions Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Have you questions?</h5>
+          <p>
+            Contact us at:201/a WGC Road Tuticorin City, Thoothukudi, Tamil Nadu, India <br>
+            Email: fycmatrimony@gmail.com <br>
+            Phone: +912 456 7890
+          </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'login' %}">User Login</a></li>
+            <li><a href="{% url 'admind' %}">Admin Login</a></li>
+            <li><a href="#!">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Privacy</h5>
+          <ul class="list-unstyled">
+            <li><a href="#!">Privacy Policy</a></li>
+            <li><a href="#!">Terms of Use</a></li>
+          </ul>
+        </div>
+
+        <!-- Follow Us Section -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Follow us</h5>
+          <a href="https://www.facebook.com/" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-twitter"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-instagram"></i></a>
+          <a href="#!" class="btn btn-primary btn-floating m-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.getElementById("contact-toggle").addEventListener("click", function(e) {
+      e.preventDefault();
+      var contactInfo = document.getElementById("contact-info");
+      
+      // Toggle visibility
+      if (contactInfo.style.display === "none" || contactInfo.style.display === "") {
+        contactInfo.style.display = "block";
+      } else {
+        contactInfo.style.display = "none";
+      }
+    });
+
+    // Close the dropdown when clicked outside
+    document.addEventListener("click", function(event) {
+      var contactInfo = document.getElementById("contact-info");
+      var contactToggle = document.getElementById("contact-toggle");
+
+      if (!contactInfo.contains(event.target) && event.target !== contactToggle) {
+        contactInfo.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

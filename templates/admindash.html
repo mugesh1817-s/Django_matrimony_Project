@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimony</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'project.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            color: #fff;
+            padding: 15px;
+            display: block;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 15px;
+        }
+        .container-d{
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 50px;
+            
+        }
+        .container-box {
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            margin-bottom: 80px;
+            width: 300px;
+        }
+        #box3{
+            background-color: blueviolet;
+        }
+        #box4{
+            background-color: orangered;
+        }
+        .bg-info-card {
+            background-color: rgba(23, 162, 184, 0.7);
+        }
+        .bg-success-card {
+            background-color: rgba(40, 167, 69, 0.7);
+        }
+        .bg-warning-card {
+            background-color: rgba(255, 193, 7, 0.7);
+        }
+        .bg-danger-card {
+            background-color: rgba(220, 53, 69, 0.7);
+        }
+</style>
+<body>
+<div class="sidebar">
+    <h2 class="text-center">MY Admin</h2>
+    <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="#"><i class="fas fa-chart-bar"></i> Home</a>
+    <a href="#"><i class="fas fa-table"></i> About</a>
+    <a href="#"><i class="fas fa-folder"></i> Contact</a>
+    <a href="{% url 'adminuser' %}"><i class="fa-solid fa-circle-user"></i> Users</a>
+    <a href="{% url 'admindata' %}"><i class="fa-solid fa-user"></i> Profiles</a>
+    <a href="{% url 'readoff' %}"><i class="fa-solid fa-user"></i>Offers</a>
+    <a href="{% url 'adminstory' %}"><i class="fa-solid fa-user"></i>Stories</a>
+    <a href="{% url 'adminprofit' %}"><i class="fa-solid fa-user"></i>Profit</a>
+     <a href="{% url 'displayexp' %}"><i class="fa-solid fa-user"></i>Expense</a>
+    <a href="{% url 'admind' %}"><i class="fas fa-cogs"></i> Log Out</a>
+</div>
+<div class="content">
+     <h3 class="mb-4">DASHBOARD</h3>
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="container-d" style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
+                <h4>Total Members</h4>
+                <p><i class="fa-solid fa-users"></i> {{ m2 }} profiles</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="container-d" style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
+                <h4>Premium Members</h4>
+                <p><i class="fa-solid fa-users"></i> 16</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="container-d" style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
+                <h4>Free Members</h4>
+                <p><i class="fa-solid fa-users"></i> 30</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="container-d" style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
+                <h4>Blocked Members</h4>
+                <p><i class="fa-solid fa-users"></i> 4</p>
+            </div>
+        </div>
+
+    </div>
+    <center>
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="container-box bg-info-card text-white" id="box3" style="margin-bottom: 50px ;">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">Male Members</h5><br>
+                    <p class="card-text"><i class="fa-solid fa-users"></i>{{m4}} Profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="container-box bg-success-card text-white" id="box4" style="margin-bottom: 50px ;">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">Female Members<i class="fa-solid fa-indian-rupee-sign"></i></h5><br>
+                    <p class="card-text"><i class="fa-solid fa-users"></i> {{m3}} Profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="container-box bg-info-card text-white" id="box1" style="margin-bottom: 50px ;">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">Below 25 age</h5><br>
+                    <p class="card-text"><i class="fa-solid fa-users"></i> {{ m1 }} Profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="container-box bg-success-card text-white" id="box2" style="margin-bottom: 50px ;">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">Above 40k/Month<i class="fa-solid fa-indian-rupee-sign"></i></h5><br>
+                    <p class="card-text"><i class="fa-solid fa-users"></i> {{m9}} Profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="container-box bg-warning-card text-white" id="box5">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">Degree Holders</h5><br>
+                    <p class="card-text"><i class="fa-solid fa-users"></i> {{m6}} Profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="container-box bg-danger-card text-white" id="box6">
+                <div class="card-body">
+                    <h5 class="card-title">Above 25 to 40 age</h5><br>
+                    <p class="card-text"><i class="fa-solid fa-users"></i>
+                    {{m5}} Profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="container-box bg-warning-card text-white" id="box7"style="background-color: orangered;">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">Bachelor of Engineering</h5><br>
+                    <p class="card-text"><i class="fa-solid fa-users"></i> {{m8}} Profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="container-box bg-danger-card text-white" id="box8" style="background-color: blueviolet ;">
+                <div class="card-body">
+                    <h5 class="card-title">Bachelor of Arts and Science</h5><br>
+                    <p class="card-text"><i class="fa-solid fa-users"></i>
+                    {{ m7 }} Profiles</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </center>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
